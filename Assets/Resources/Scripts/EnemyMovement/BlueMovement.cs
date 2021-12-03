@@ -29,7 +29,7 @@ public class BlueMovement : MonoBehaviour
 
     void Update()
     {
-        if (Vector3.Distance(objectToReact.transform.position, transform.position) < 1000)
+        if (Vector3.Distance(objectToReact.transform.position, transform.position) < 10)
         {
             if (speedPerSec < Time.time)
             {

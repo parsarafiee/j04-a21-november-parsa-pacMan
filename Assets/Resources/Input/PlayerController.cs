@@ -4,19 +4,22 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using fsm;
 
-
-enum Direction { Right, Left, Up, Down }
+ enum Direction { Right, Left, Up, Down }
 public class PlayerController : MonoBehaviour
 {
 
     private IEnumerator coroutine;
 
+    public float speed =0.1f;
+
+    public Vector2 Vector2;
     private PlayerMovement controls;
     FSM fsm = new FSM("Animation");
 
 
     static Direction direction = Direction.Right;
 
+    float timer=0;
 
 
     public void MoveRight()
@@ -72,8 +75,9 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        coroutine = WaitAndPrint(0.1f);
-        StartCoroutine(coroutine);
+
+        
+
 
 
         State right = new State("right", MoveRight);
@@ -113,40 +117,32 @@ public class PlayerController : MonoBehaviour
         fsm.Start();
     }
 
-    private IEnumerator WaitAndPrint(float waitTime)
-    {
-        controls.Main.Movement.performed += ctx => Helper.Move(this.transform, ctx.ReadValue<Vector2>());
-
-        yield return new WaitForSeconds(waitTime);
-    }
     void Update()
     {
 
+         MovementPlayerOnDirection(Vector2.right, Direction.Right);
+         MovementPlayerOnDirection(Vector2.left, Direction.Left);
+         MovementPlayerOnDirection(Vector2.up, Direction.Up);
+         MovementPlayerOnDirection(Vector2.down, Direction.Down);
 
 
-        if (controls.Main.Movement.ReadValue<Vector2>() == Vector2.down)
-        {
-            direction = Direction.Down;
-
-        }
-
-        if (controls.Main.Movement.ReadValue<Vector2>() == Vector2.right)
-        {
-            direction = Direction.Right;
-        }
-
-        if (controls.Main.Movement.ReadValue<Vector2>() == Vector2.left)
-        {
-            direction = Direction.Left;
-        }
-
-        if (controls.Main.Movement.ReadValue<Vector2>() == Vector2.up)
-        {
-            direction = Direction.Up;
 
 
-        }
         fsm.Process();
+
+    }
+
+    void MovementPlayerOnDirection(Vector2 vector,Direction dir)
+    {
+        if (controls.Main.Movement.ReadValue<Vector2>() == vector)
+        {
+            direction = dir;
+            if (Time.time > timer)
+            {
+                Helper.Move(this.transform, controls.Main.Movement.ReadValue<Vector2>());
+                timer = speed + Time.time;
+            }
+        }
 
     }
 }
