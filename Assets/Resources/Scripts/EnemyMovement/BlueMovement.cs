@@ -8,7 +8,7 @@ public class BlueMovement : MonoBehaviour
     public float speed_1 = 0.3f;
     float speedPerSec = 0;
 
-    PlayerController playerController;
+   // PlayerController playerController;
 
     GameObject target;
 
@@ -23,8 +23,9 @@ public class BlueMovement : MonoBehaviour
         speedPerSec = speed_1;
         dir = new List<Vector2>() { Vector2.right, Vector2.down, Vector2.left, Vector2.up };
 
-        playerController = FindObjectOfType<PlayerController>();
-        target = playerController.gameObject;
+        //playerController = FindObjectOfType<PlayerController>();
+       // target = playerController.gameObject;
+        target = GameLinks.gl.player;
     }
 
     void Update()

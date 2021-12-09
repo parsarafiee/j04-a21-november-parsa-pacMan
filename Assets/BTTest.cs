@@ -2,29 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BT_lib;
+using System;
 
 public class BTTest : MonoBehaviour
 {
-    public Transform circle;
-    public Transform square;
-    public Rigidbody2D rbCircle;
-    public Rigidbody2D rbsQuare;
-
-
-    BT bt_move;
+    AIMovement ai;
+    BT bt_ScapeFromAnamy;
+    BT bt_Root;
+    Vector2 directionToRun;
     void Start()
     {
-     //   bt_move = new BT(NODE_TYPE.SEQUENCE, new BT(this.CloseTpEnemy), new BT(this.Run));
+        ai=this.gameObject.GetComponent<AIMovement>();
+        bt_ScapeFromAnamy = new BT(NODE_TYPE.SEQUENCE, new BT(this.CloseTpEnemy), new BT(this.Run));
+        bt_Root = new BT(NODE_TYPE.SELECTOR, bt_ScapeFromAnamy, new BT(this.GetAllPoints));
+    }
 
-        rbsQuare.AddForce(new Vector2(1f, 0),ForceMode2D.Impulse);
-        Debug.Log(rbsQuare.velocity);
+    private BT_VALUE GetAllPoints()
+    {
+        ai.SetTheTargetTo(ai.GetClosestEnemy(PointsManager.Instance.points));
+        return BT_VALUE.SUCCESS;
+
     }
 
     private void Update()
     {
-        rbCircle.AddForce(new Vector2(1f, 0));
-        Debug.Log(rbCircle.velocity);
-
+        bt_Root.Evaluate();
 
     }
 
@@ -32,21 +34,24 @@ public class BTTest : MonoBehaviour
     {
         BT_VALUE value = BT_VALUE.FAIL;
 
-        
-        //        rbCircle.AddForce(new Vector2(f, 0), ForceMode2D.Impulse);
 
-        if (Vector3.Distance(circle.position, square.position) < 5)
+        foreach (var item in EnemyManager.Instance.enamyList)
         {
+            if (Vector3.Distance(item.gameObject.transform.position,this.transform.position)<4)
+            {
+
             value = BT_VALUE.SUCCESS;
+            }
+
         }
+
         return value;
     }
 
     public BT_VALUE Run()
     {
-      //  rbCircle.AddForce(new Vector2(1f, 0));
-
-        //Debug.Log("hey");
+        ai.SetTheTargetTo(this.gameObject);
+        Debug.Log("i have to run");
         return BT_VALUE.SUCCESS;
     }
 }

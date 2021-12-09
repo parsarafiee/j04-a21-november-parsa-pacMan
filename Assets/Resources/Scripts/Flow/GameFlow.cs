@@ -5,11 +5,14 @@ using UnityEngine;
 public class GameFlow : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GameLinks.gl = GameObject.FindObjectOfType<GameLinks>();
         PointsManager.Instance.Initialize();
         EnemyManager.Instance.Initialize();
+        PointsManager.Instance.Initialize();
+
+        Debug.Log(PointsManager.Instance.points.Count);
 
     }
 

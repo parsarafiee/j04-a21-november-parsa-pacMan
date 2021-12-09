@@ -14,9 +14,6 @@ namespace BT_lib
     {
 
         NODE_TYPE type;
-
-
-
         List<BT> children;
 
         ActionFuntion actionFunction;
@@ -43,7 +40,14 @@ namespace BT_lib
                     value = actionFunction();
                     break;
                 case NODE_TYPE.SELECTOR:
-
+                    foreach (BT child in children)
+                    {
+                        value = child.Evaluate();
+                        if (value != BT_VALUE.FAIL)
+                        {
+                            break;
+                        }
+                    }
                     break;
                 case NODE_TYPE.SEQUENCE:
                     foreach (BT child in children)
@@ -54,7 +58,6 @@ namespace BT_lib
                             break;
                         }
                     }
-
                     break;
                 case NODE_TYPE.INVERTER:
                     break;

@@ -8,11 +8,12 @@ public class Point : MonoBehaviour
     GameObject player;
     void Start()
     {
-       player = FindObjectOfType<Player>().gameObject; 
+       player = GameLinks.gl.player; 
     }
     private void OnDestroy()
     {
         PointsManager.Instance.pointsToRemove++;
+        PointsManager.Instance.points.Remove(this);
     }
 
     // Update is called once per frame
