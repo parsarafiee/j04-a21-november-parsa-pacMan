@@ -24,7 +24,7 @@ public class GameLinks : MonoBehaviour
 
     public TileBase wallTile;
 
-
+    public List<GameObject> GameObjectToScape;
     public Text points;
 
     public GameObject blue;

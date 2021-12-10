@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4400233169706655665}
   - component: {fileID: 1131026804110131779}
   - component: {fileID: -5745119188360512975}
+  - component: {fileID: 2281349780400161391}
   m_Layer: 9
   m_Name: Point
   m_TagString: Untagged
@@ -95,3 +96,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7cba03da4e56f44ace7762ac1d61ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &2281349780400161391
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7140924002125407467}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

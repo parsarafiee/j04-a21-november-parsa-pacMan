@@ -47,6 +47,18 @@ public class Tile_Node : Node
             }
 
         }
+        if (((Tile_Node)current).gameObject.tag =="Player")
+        {
+            for (int i = 0; i < allEnemies.Count; i++)
+            {
+                if ( Vector3.Distance(((Tile_Node)current).position, allEnemies[i].transform.position) < 5)
+                {
+                    return 1000;
+                }
+
+            }
+
+        }
 
         return 1;
     }

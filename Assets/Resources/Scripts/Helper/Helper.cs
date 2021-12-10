@@ -17,7 +17,7 @@ public class Helper : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(pos);
         return cellPosition;
     }
-    public static void Move(Transform transform,Vector2 direction)
+    public static void Move(Transform transform, Vector2 direction)
     {
         if (CanMove(transform, direction))
         {
@@ -36,22 +36,39 @@ public class Helper : MonoBehaviour
     }
     public static Vector3 NextVector3_ToChaseThePlayer(GameObject chaser, GameObject objectToChase)
     {
-        Vector3 nextPo=Vector3.zero;
+        Vector3 nextPo = Vector3.zero;
         Vector3Int chaser_PositonToCell = GetGridPositon(chaser.transform.position);
         Vector3Int objectToChase_PostionToCell = GetGridPositon(objectToChase.transform.position);
 
-        Tile_Node currentNode =new Tile_Node(chaser,chaser_PositonToCell);
-        Tile_Node destinationNode =new Tile_Node(objectToChase,objectToChase_PostionToCell);
+        Tile_Node currentNode = new Tile_Node(chaser, chaser_PositonToCell);
+        Tile_Node destinationNode = new Tile_Node(objectToChase, objectToChase_PostionToCell);
         Tile_Node nextNode = (Tile_Node)new Astar().GiveNextNodeOfPath(currentNode, destinationNode);
 
         nextPo.x = nextNode.position.x;
         nextPo.y = nextNode.position.y;
 
         return nextPo;
-       // astar.SearchPath()
+        // astar.SearchPath()
     }
 
-    
+    public static GameObject GetTheBestPositonToRun(GameObject currentPositon)
+    {
+        GameObject pos= null;
+
+            float minDist = Mathf.Infinity;
+            Vector3 currentPos = currentPositon.transform.position;
+            foreach (GameObject t in GameLinks.gl.GameObjectToScape)
+            {
+                float dist = Vector3.Distance(t.gameObject.transform.position, currentPos);
+                if (dist < minDist)
+                {
+                pos = t;
+                    minDist = dist;
+                }
+            }
+
+        return pos;
+    }
     //public static List<Tile_Node> CreatePathFromNode(Tile_Node lastTile)
     //{
 

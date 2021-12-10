@@ -6,6 +6,7 @@ using System;
 
 public class BTTest : MonoBehaviour
 {
+    public float mindistanceToAI=5;
     AIMovement ai;
     BT bt_ScapeFromAnamy;
     BT bt_Root;
@@ -19,7 +20,7 @@ public class BTTest : MonoBehaviour
 
     private BT_VALUE GetAllPoints()
     {
-        ai.SetTheTargetTo(ai.GetClosestEnemy(PointsManager.Instance.points));
+        ai.SetTheTargetTo(ai.GetClosestPoint(PointsManager.Instance.points));
         return BT_VALUE.SUCCESS;
 
     }
@@ -37,7 +38,7 @@ public class BTTest : MonoBehaviour
 
         foreach (var item in EnemyManager.Instance.enamyList)
         {
-            if (Vector3.Distance(item.gameObject.transform.position,this.transform.position)<4)
+            if (Vector3.Distance(item.gameObject.transform.position,this.transform.position)<mindistanceToAI)
             {
 
             value = BT_VALUE.SUCCESS;
@@ -50,7 +51,8 @@ public class BTTest : MonoBehaviour
 
     public BT_VALUE Run()
     {
-        ai.SetTheTargetTo(this.gameObject);
+        GameObject locationToRun = Helper.GetTheBestPositonToRun(this.gameObject);
+        ai.SetTheTargetTo(locationToRun);
         Debug.Log("i have to run");
         return BT_VALUE.SUCCESS;
     }

@@ -11,7 +11,7 @@ public class AIMovement : MonoBehaviour
     void Start()
     {
         speedPerSec = speed_1;
-         closestPoint = GetClosestEnemy(PointsManager.Instance.points);
+         closestPoint = GetClosestPoint(PointsManager.Instance.points);
 
     }
 
@@ -29,7 +29,7 @@ public class AIMovement : MonoBehaviour
         Helper.Move(transform, newDirection - Helper.GetGridPositon(this.transform.position));
         speedPerSec = Time.time + speed_1;
     }
-    public GameObject GetClosestEnemy(List<Point> enemies)
+    public GameObject GetClosestPoint(List<Point> enemies)
     {
         Point tMin = null;
         float minDist = Mathf.Infinity;
