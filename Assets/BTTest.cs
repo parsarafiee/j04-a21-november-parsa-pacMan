@@ -53,7 +53,7 @@ public class BTTest : MonoBehaviour
     {
         GameObject locationToRun = Helper.GetTheBestPositonToRun(this.gameObject);
         ai.SetTheTargetTo(locationToRun);
-        Debug.Log("i have to run");
+       // Debug.Log("i have to run");
         return BT_VALUE.SUCCESS;
     }
 }

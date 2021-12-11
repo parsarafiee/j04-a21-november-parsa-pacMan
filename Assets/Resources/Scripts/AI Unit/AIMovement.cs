@@ -11,7 +11,7 @@ public class AIMovement : MonoBehaviour
     void Start()
     {
         speedPerSec = speed_1;
-         closestPoint = GetClosestPoint(PointsManager.Instance.points);
+        closestPoint = GetClosestPoint(PointsManager.Instance.points);
 
     }
 
@@ -21,13 +21,18 @@ public class AIMovement : MonoBehaviour
     }
     void Update()
     {
-        if (closestPoint == null)
+        if (speedPerSec < Time.time)
         {
-            closestPoint = this.gameObject;
+            if (closestPoint == null)
+            {
+                closestPoint = this.gameObject;
+            }
+            Vector3 newDirection = Helper.NextVector3_ToChaseThePlayer(this.gameObject, closestPoint);
+            Helper.Move(transform, newDirection - Helper.GetGridPositon(this.transform.position));
+            speedPerSec = Time.time + speed_1;
+
         }
-        Vector3 newDirection = Helper.NextVector3_ToChaseThePlayer(this.gameObject, closestPoint);
-        Helper.Move(transform, newDirection - Helper.GetGridPositon(this.transform.position));
-        speedPerSec = Time.time + speed_1;
+
     }
     public GameObject GetClosestPoint(List<Point> enemies)
     {

@@ -55,14 +55,14 @@ public class Helper : MonoBehaviour
     {
         GameObject pos= null;
 
-            float minDist = Mathf.Infinity;
+            float minDist = 0;
             Vector3 currentPos = currentPositon.transform.position;
             foreach (GameObject t in GameLinks.gl.GameObjectToScape)
             {
                 float dist = Vector3.Distance(t.gameObject.transform.position, currentPos);
-                if (dist < minDist)
+                if (dist > minDist)
                 {
-                pos = t;
+                    pos = t;
                     minDist = dist;
                 }
             }

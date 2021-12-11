@@ -4891,6 +4891,7 @@ GameObject:
   - component: {fileID: 656795054}
   - component: {fileID: 656795055}
   - component: {fileID: 656795056}
+  - component: {fileID: 656795057}
   m_Layer: 10
   m_Name: AI
   m_TagString: Untagged
@@ -4975,7 +4976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3dffd9ff18f4548a64f3134844b5cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_1: 0.3
+  speed_1: 0.05
 --- !u!114 &656795055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5005,6 +5006,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &656795057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656795051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8058458d36cded144a16fb19acb2ba29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &707803518
 GameObject:
   m_ObjectHideFlags: 0
