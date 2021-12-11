@@ -171,7 +171,8 @@ MonoBehaviour:
   - {fileID: 1826476839}
   - {fileID: 707803518}
   points: {fileID: 2007846123}
-  blue: {fileID: 0}
+  numberOfRedPills: 5
+  timerForRedPill: 3
 --- !u!114 &7477144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4977,6 +4978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed_1: 0.05
+  pacManTookARedPill: 0
 --- !u!114 &656795055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7140,7 +7142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884825947}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1471127907}

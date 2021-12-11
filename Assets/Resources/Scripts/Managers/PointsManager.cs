@@ -37,55 +37,36 @@ public class PointsManager
     }
     public void SpawnPoints()
     {
+
         for (int i = -17; i < 18; i++)
         {
             for (int j = -10; j < 10; j++)
             {
-                
-                Vector3 worldPositon= new Vector3(i,j,0);
-                Vector3Int cellPosistion =Helper.GetGridPositon(worldPositon);
+                Vector3 worldPositon = new Vector3(i, j, 0);
+                Vector3Int cellPosistion = Helper.GetGridPositon(worldPositon);
                 if (!GameLinks.gl.colliderTile.GetTile(cellPosistion))
                 {
-                    Point newZombie = GameObject.Instantiate(pointsResource, pointsParent).GetComponent<Point>();
-                    newZombie.name = "Point";
-                    newZombie.transform.position = worldPositon + new Vector3(0.5f,0.5f,0);
-                    points.Add(newZombie);
+                    Point newPoint = GameObject.Instantiate(pointsResource, pointsParent).GetComponent<Point>();
+                    newPoint.name = "Point";
+                    newPoint.transform.position = worldPositon + new Vector3(0.5f, 0.5f, 0);
 
+                    points.Add(newPoint);
                 }
-
-
             }
-
         }
+        MakeRedPills();
+    }
 
+    public void MakeRedPills()
+    {
+        int[] randomRedpills = new int[GameLinks.gl.numberOfRedPills];
+        for (int i = 0; i < randomRedpills.Length; i++)
+        {
+            randomRedpills[i] = Random.Range(0, points.Count);
+            points[randomRedpills[i]].GetComponent<SpriteRenderer>().material.color = Color.red;
+        }
     }
 
 
-    //public void GameStart()
-    //{
-    //    Vector2 validSpot = new Vector2();
-    //    for (int i = 0; i < numberOfPoints; i++)
-    //        if (GetValidSpot(out validSpot))
-    //            SpawnPoints(validSpot);
-
-    //}
-    //private bool GetValidSpot(out Vector2 validSpot)
-    //{
-    //    Bounds wbounds = GameLinks.gl.worldBounds.bounds;
-
-
-    //    for (int i = 0; i < VALIDSPOT_ATTEMPTS_MAX; i++)
-    //    {
-    //        Vector2 spotInMap = new Vector2(Random.Range(-wbounds.extents.x, wbounds.extents.x), Random.Range(-wbounds.extents.y, wbounds.extents.y)) + (Vector2)wbounds.center;
-
-    //        if (!Physics2D.OverlapCapsule(spotInMap, new Vector2(2, 2), CapsuleDirection2D.Vertical, 0, LayerMask.GetMask("Unit", "Wall")))
-    //        {
-    //            validSpot = spotInMap;
-    //            return true;
-    //        }
-    //    }
-    //    validSpot = new Vector2();
-    //    return false;
-    //}
 
 }

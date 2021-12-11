@@ -25,4 +25,8 @@ public class En_Pink :Enemy
         isAlive = false;
         GameObject.Destroy(gameObject);
     }
+    private void OnDestroy()
+    {
+        EnemyManager.Instance.enamyList.Remove(this);
+    }
 }

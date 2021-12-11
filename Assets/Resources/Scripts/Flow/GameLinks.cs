@@ -27,8 +27,8 @@ public class GameLinks : MonoBehaviour
     public List<GameObject> GameObjectToScape;
     public Text points;
 
-    public GameObject blue;
-
+    public int  numberOfRedPills;
+    public float timerForRedPill;
     private void Start()
     {
   

@@ -51,7 +51,7 @@ public class Helper : MonoBehaviour
         // astar.SearchPath()
     }
 
-    public static GameObject GetTheBestPositonToRun(GameObject currentPositon)
+    public static GameObject PlayerGetTheBestPositonToRun(GameObject currentPositon)
     {
         GameObject pos= null;
 
@@ -69,10 +69,11 @@ public class Helper : MonoBehaviour
 
         return pos;
     }
-    //public static List<Tile_Node> CreatePathFromNode(Tile_Node lastTile)
+
+    //public static int[] GenerateRndomNumberInlist(List<char> list ,)
     //{
-
-
-
+    //    int[] numevrs = new int[10];
+    //    return 
     //}
+
 }

@@ -10,7 +10,6 @@ public class GameFlow : MonoBehaviour
         GameLinks.gl = GameObject.FindObjectOfType<GameLinks>();
         PointsManager.Instance.Initialize();
         EnemyManager.Instance.Initialize();
-        PointsManager.Instance.Initialize();
 
         Debug.Log(PointsManager.Instance.points.Count);
 

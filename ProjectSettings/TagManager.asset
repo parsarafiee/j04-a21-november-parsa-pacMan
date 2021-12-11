@@ -8,6 +8,7 @@ TagManager:
   - Pink
   - Red
   - Yellow
+  - Point
   layers:
   - Default
   - TransparentFX

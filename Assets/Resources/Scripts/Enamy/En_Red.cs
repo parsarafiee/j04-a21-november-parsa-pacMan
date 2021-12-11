@@ -25,4 +25,8 @@ public class En_Red : Enemy
         isAlive = false;
         //base.Die();
     }
+    private void OnDestroy()
+    {
+        EnemyManager.Instance.enamyList.Remove(this);
+    }
 }
